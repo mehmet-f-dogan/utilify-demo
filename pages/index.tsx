@@ -1,6 +1,4 @@
-// pages/index.tsx
 import { useState } from 'react';
-import useSWR from 'swr';
 import Link from 'next/link';
 import { Inter } from 'next/font/google';
 import { Todo } from '@prisma/client';

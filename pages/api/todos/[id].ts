@@ -22,13 +22,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
                 res.status(200).json(deletedTodo);
             } catch (error) {
-                console.error('Error deleting todo:', error);
                 res.status(500).json({ message: 'Internal Server Error' });
             }
             break;
 
         case 'PUT':
-            const { name, description } = req.body;
+            const { description } = req.body;
 
             try {
                 const updatedTodo = await prisma.todo.update({
@@ -36,14 +35,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         id: parseInt(todoId),
                     },
                     data: {
-                        name,
                         description,
                     },
                 });
 
                 res.status(200).json(updatedTodo);
             } catch (error) {
-                console.error('Error updating todo:', error);
                 res.status(500).json({ message: 'Internal Server Error' });
             }
             break;
