@@ -68,10 +68,10 @@ export default function TodoDetail({
                 onChange={(e) => setNewDescription(e.target.value)}
             />
             <p className="text-sm text-gray-500 mb-4">
-                Created: {todo.createdAt}
+                Created: {new Date(todo.createdAt).toLocaleString()}
             </p>
             <p className="text-sm text-gray-500 mb-4">
-                Last Updated: {todo.updatedAt}
+                Last Updated: {new Date(todo.updatedAt).toLocaleString()}
             </p>
             <div className="flex space-x-4">
                 <DeleteButton todo={todo} />
@@ -105,8 +105,8 @@ export const getServerSideProps = (async (context: any) => {
     const todo = data as Todo
     const todoWrapper = {
         ...todo,
-        createdAt: todo.createdAt.toLocaleString(),
-        updatedAt: todo.updatedAt.toLocaleString()
+        createdAt: todo.createdAt.toISOString(),
+        updatedAt: todo.updatedAt.toISOString()
     } as TodoWrapper
     return { props: { todoWrapper } }
 }) satisfies GetServerSideProps<{ todoWrapper: TodoWrapper }>
